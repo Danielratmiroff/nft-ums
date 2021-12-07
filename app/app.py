@@ -25,7 +25,7 @@ col = db["user"]
 # Todo
 # create a local mongodb container
 # add environmental variables for testing and deployment
-# create a replica mongodb set for PROD
+# create a replica mongodb set for
 
 user = col.find({})
 
