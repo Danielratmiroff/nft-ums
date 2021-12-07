@@ -1,46 +1,68 @@
+import os
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
+from pymongo import MongoClient, results
 
-from pymongo import MongoClient
+from dotenv import load_dotenv
+from pathlib import Path
 
 app = Flask(__name__)
 api = Api(app)
 
-client = MongoClient("mongodb://db:27017")
-db = client.aNewDB
-UserNum = db["UserNum"]
+load_dotenv()
 
-UserNum.insert_one({
-    "users": 0
-})
+DB_USER = os.getenv('MONGO_USER')
+DB_PASSWORD = os.getenv('MONGO_PASSWORD')
+DB_IP = os.getenv('MONGO_IP')
+DB_PORT = os.getenv('MONGO_PORT')
 
-
-class Visit(Resource):
-    def get(self):
-        prev_num: UserNum.find({})[0]["users"]
-        new_num = prev_num + 1
-        UserNum.insert({}, {"$set": {"users": new_num}})
-        return str("Hello user " + str(new_num))
+url = f'mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:{DB_PORT}'
+client = MongoClient(url)
+db = client["nft-ums"]
+col = db["user"]
 
 
-class Add(Resource):
-    def post(self):
-        postedData = request.get_json()
-        dataE = {
-            'Message': postedData,
-            'Status Code': 200
-        }
-        return jsonify(dataE)
+# Todo
+# create a local mongodb container
+# add environmental variables for testing and deployment
+# create a replica mongodb set for PROD
+
+user = col.find({})
+
+print(list(user))
+
+# UserNum.insert_one({
+#     "users": 0
+# })
 
 
-api.add_resource(Add, '/add')
-api.add_resource(Visit, '/hello')
+# class Get(Resource):
+#     def get(self):
+#         return "hey world!"
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+# class Visit(Resource):
+#     def get(self):
+#         prev_num: UserNum.find({})[0]["users"]
+#         new_num = prev_num + 1
+#         UserNum.insert({}, {"$set": {"users": new_num}})
+#         return str("Hello user " + str(new_num))
 
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+# class Add(Resource):
+#     def post(self):
+#         postedData = request.get_json()
+#         dataE = {
+#             'Message': postedData,
+#             'Status Code': 200
+#         }
+#         return jsonify(dataE)
+
+
+# api.add_resource(Add, '/add')
+# api.add_resource(Visit, '/hello')
+# api.add_resource(Get, '/')
+
+
+# if __name__ == '__main__':
+#     app.run(debug=True, host='0.0.0.0', port=5000)
