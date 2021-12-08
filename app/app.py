@@ -25,9 +25,8 @@ col = db["user"]
 print(url)
 
 # # Todo
-# # create a local mongodb container
-# # add environmental variables for testing and deployment
-# # create a replica mongodb set for
+# environmental variables to work on EC2
+# create a replica mongodb set for production
 
 
 @app.route('/', methods=['GET'])
