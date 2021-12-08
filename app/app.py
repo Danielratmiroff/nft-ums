@@ -34,7 +34,7 @@ print(url)
 def add():
     user = col.find({})
     value = list(user)
-    return f'Hello World from mongo: {value}'
+    return f'Hello World from mongo 0.1: {value}'
 
 
 if __name__ == '__main__':
