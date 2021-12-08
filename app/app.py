@@ -4,7 +4,6 @@ from flask_restful import Api, Resource
 from pymongo import MongoClient, results
 
 from dotenv import load_dotenv
-from pathlib import Path
 
 app = Flask(__name__)
 api = Api(app)
