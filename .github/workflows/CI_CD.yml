@@ -14,8 +14,8 @@ jobs:
           python-version: 3.8.10
       - name: Install dependencies
         run: |
-          python3 -m pip3 install --upgrade pip
-          if [ -f ./app/requirements.txt ]; then pip3 install -r ./app/requirements.txt; fi
+          python3 -m pip install --upgrade pip
+          if [ -f ./app/requirements.txt ]; then pip install -r ./app/requirements.txt; fi
 
   continuous-deployment:
     runs-on: ubuntu-latest
