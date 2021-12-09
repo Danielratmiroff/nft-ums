@@ -16,11 +16,11 @@ services:
       - MONGO_PASSWORD=${MONGO_PASSWORD}
       - MONGO_IP=${MONGO_IP}
       - MONGO_PORT=${MONGO_PORT}
-
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    restart: always
-    ports:
-      - "27017:27017"
+  # No need since we already installed MongoDB in EC2
+  # mongo:
+  #   image: mongo:latest
+  #   container_name: mongo
+  #   restart: always
+  #   ports:
+  #     - "27017:27017"
       
