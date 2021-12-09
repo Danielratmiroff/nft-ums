@@ -13,9 +13,8 @@ load_dotenv()
 DB_USER = os.getenv('MONGO_USER')
 DB_PASSWORD = os.getenv('MONGO_PASSWORD')
 DB_IP = os.getenv('MONGO_IP')
-DB_PORT = os.getenv('MONGO_PORT')
 
-url = f'mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:{DB_PORT}'
+url = f'mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:27017'
 client = MongoClient(url)
 db = client["nft-ums"]
 col = db["user"]
