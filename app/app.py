@@ -15,14 +15,11 @@ DB_PASSWORD = os.getenv('MONGO_PASSWORD')
 DB_IP = os.getenv('MONGO_IP')
 DB_PORT = os.getenv('MONGO_PORT')
 
-
 url = f'mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:{DB_PORT}'
 client = MongoClient(url)
 db = client["nft-ums"]
 col = db["user"]
 
-
-print(url)
 
 # # Todo
 # environmental variables to work on EC2
@@ -33,7 +30,7 @@ print(url)
 def add():
     user = col.find({})
     value = list(user)
-    return f'Hello World from mongo 0.1: {value}'
+    return f'Hello World from mongo 0.2: {value}'
 
 
 if __name__ == '__main__':
