@@ -20,16 +20,17 @@ db = client["nft-ums"]
 col = db["user"]
 
 
-# # Todo
-# environmental variables to work on EC2
+# Todo
 # create a replica mongodb set for production
 
+class Visit(Resource):
+    def get(self):
+        user = col.find({})
+        value = list(user)
+        return f'Hello World: {value}'
 
-@app.route('/', methods=['GET'])
-def add():
-    user = col.find({})
-    value = list(user)
-    return f'Hello World from mongo 0.2: {value}'
+
+api.add_resource(Visit, '/')
 
 
 if __name__ == '__main__':
