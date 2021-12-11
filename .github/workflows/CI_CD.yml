@@ -34,6 +34,8 @@ jobs:
               id: deploy
               env:
                   MONGO_USER: ${{ secrets.MONGO_USER }}
+                  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+                  MONGO_IP: ${{ secrets.MONGO_IP }}
               run: |
                   aws deploy create-deployment \
                     --application-name Git_Application \

@@ -13,6 +13,8 @@ services:
     #   - ~/.env
     environment:
       - MONGO_USER=$MONGO_USER
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_IP=$MONGO_IP
   # No need since we already installed MongoDB in EC2
   # mongo:
   #   image: mongo:latest
