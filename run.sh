@@ -1,5 +1,5 @@
 #!/bin/bash
 cd /home/ec2-user/ums
-docker-compose down && docker-compose rm &&
+docker-compose rm &&
     docker-compose build --no-cache &&
-    docker-compose --env-file ~/.env up -d --force-recreate
+    docker-compose --env-file /home/ubuntu/.env up -d --force-recreate
