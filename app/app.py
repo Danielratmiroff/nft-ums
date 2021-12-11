@@ -6,9 +6,9 @@ from pymongo import MongoClient, results
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-CORS(app, support_credentials=True)
-
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 api = Api(app)
+
 load_dotenv()
 
 DB_USER = os.getenv("MONGO_USER")
