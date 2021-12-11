@@ -11,10 +11,10 @@ services:
     # build fails but implementation works somehow
     # env_file:
     #   - ~/.env
-    # environment:
-    #   - MONGO_USER=$MONGO_USER
-    #   - MONGO_PASSWORD=$MONGO_PASSWORD
-    #   - MONGO_IP=$MONGO_IP
+    environment:
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_IP=$MONGO_IP
   # No need since we already installed MongoDB in EC2
   # mongo:
   #   image: mongo:latest
