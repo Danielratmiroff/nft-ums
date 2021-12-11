@@ -8,12 +8,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
-    # env_file:
-    #   - .env
-    environment:
-      - MONGO_USER=${MONGO_USER}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
-      - MONGO_IP=${MONGO_IP}
+    env_file:
+      - ~/.env
   # No need since we already installed MongoDB in EC2
   # mongo:
   #   image: mongo:latest
