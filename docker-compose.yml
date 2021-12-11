@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     container_name: app
-    image: ums-app:v1
+    image: app:v1
     build: 
       context: app
     restart: always
