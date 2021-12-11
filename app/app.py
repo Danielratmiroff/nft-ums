@@ -29,7 +29,7 @@ class Visit(Resource):
     def get(self):
         user = col.find({})
         value = list(user)
-        return f"Hello World: {value}"
+        return f"Hello World: {value}", 200, {"Access-Control-Allow-Origin": "*"}
 
 
 api.add_resource(Visit, "/")
