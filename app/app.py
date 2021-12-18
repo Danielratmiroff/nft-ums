@@ -14,7 +14,6 @@ load_dotenv()
 DB_USER = os.getenv("MONGO_INITDB_ROOT_USERNAME")
 DB_PASSWORD = os.getenv("MONGO_INITDB_ROOT_PASSWORD")
 
-# url = f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:27017"
 url = f"mongodb://{DB_USER}:{DB_PASSWORD}@mongo:27017"
 client = MongoClient(url)
 db = client["UMS"]
@@ -22,8 +21,10 @@ col = db["user"]
 
 
 # Todo
+# enable mongo container in AWS
+# -> copy .env variables
 # create a replica mongodb set for production
-# improve CORS allow
+# improve CORS allow to all URLS
 
 
 class Visit(Resource):
