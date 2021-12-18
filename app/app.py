@@ -11,18 +11,19 @@ api = Api(app)
 
 load_dotenv()
 
-DB_USER = os.getenv("MONGO_USER")
-DB_PASSWORD = os.getenv("MONGO_PASSWORD")
-DB_IP = os.getenv("MONGO_IP")
+DB_USER = os.getenv("MONGO_INITDB_ROOT_USERNAME")
+DB_PASSWORD = os.getenv("MONGO_INITDB_ROOT_PASSWORD")
 
-url = f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:27017"
+# url = f"mongodb://{DB_USER}:{DB_PASSWORD}@{DB_IP}:27017"
+url = f"mongodb://{DB_USER}:{DB_PASSWORD}@mongo:27017"
 client = MongoClient(url)
-db = client["nft-ums"]
+db = client["UMS"]
 col = db["user"]
 
 
 # Todo
 # create a replica mongodb set for production
+# improve CORS allow
 
 
 class Visit(Resource):
@@ -32,7 +33,14 @@ class Visit(Resource):
         return f"Hello World: {value}", 200, {"Access-Control-Allow-Origin": "*"}
 
 
+class Add(Resource):
+    def post(self):
+        user = col.insert_one({"name": "daniel"})
+        return f"Added {user}", 200, {"Access-Control-Allow-Origin": "*"}
+
+
 api.add_resource(Visit, "/")
+api.add_resource(Add, "/add")
 
 
 if __name__ == "__main__":
