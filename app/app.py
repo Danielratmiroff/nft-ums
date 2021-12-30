@@ -21,9 +21,8 @@ col = db["user"]
 
 
 # Todo
-# enable mongo container in AWS
-# create a replica mongodb set for production
-# improve CORS allow to all URLS
+# - create a replica mongodb set for production
+# - improve CORS allow to all URLS
 
 
 class Visit(Resource):
@@ -37,6 +36,13 @@ class Add(Resource):
     def post(self):
         user = col.insert_one({"name": "daniel"})
         return f"Added {user}", 200, {"Access-Control-Allow-Origin": "*"}
+
+    def get(self):
+        return (
+            "Method uses POST instead of GET",
+            405,
+            {"Access-Control-Allow-Origin": "*"},
+        )
 
 
 api.add_resource(Visit, "/")
