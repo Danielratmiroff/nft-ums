@@ -1,25 +1,37 @@
-version: '3'
+version: "3"
+
 services:
-  web:
-    container_name: app
-    image: app:v1
-    build: 
-      context: app
-    restart: always
-    ports:
-      - "8080:8080"
-    # build fails but implementation works somehow
-    # env_file:
-    #   - ~/.env
-    environment:
-      - MONGO_USER=$MONGO_USER
-      - MONGO_PASSWORD=$MONGO_PASSWORD
-      - MONGO_IP=$MONGO_IP
-  # No need since we already installed MongoDB in EC2
-  # mongo:
-  #   image: mongo:latest
-  #   container_name: mongo
-  #   restart: always
-  #   ports:
-  #     - "27017:27017"
-      
+    web:
+        container_name: app
+        restart: always
+        image: app:v1
+        build:
+            context: app
+        ports:
+            - "8080:8080"
+        env_file:
+            # - $HOME/.env
+            - ./.env
+        links:
+            - mongo
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        container_name: mongo
+        restart: unless-stopped
+        env_file:
+            - ./.env
+        # - $HOME/.env
+        hostname: mongodb-server
+        ports:
+            - "27017:27017"
+        volumes:
+            # Disabled for now since we are only using one db user
+            # - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+            - mongodb:/data/db
+            - mongodb_config:/data/configdb
+
+volumes:
+    mongodb:
+    mongodb_config:
