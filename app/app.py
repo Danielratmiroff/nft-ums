@@ -22,7 +22,6 @@ col = db["user"]
 
 # Todo
 # enable mongo container in AWS
-# -> copy .env variables
 # create a replica mongodb set for production
 # improve CORS allow to all URLS
 
