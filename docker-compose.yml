@@ -10,7 +10,7 @@ services:
         ports:
             - "8080:8080"
         env_file:
-            - $HOME/.env
+            - /home/ubuntu/.env
             # - ./.env
         links:
             - mongo
@@ -22,7 +22,7 @@ services:
         restart: unless-stopped
         env_file:
             # - ./.env
-            - $HOME/.env
+            - /home/ubuntu/.env
         hostname: mongodb-server
         ports:
             - "27017:27017"
