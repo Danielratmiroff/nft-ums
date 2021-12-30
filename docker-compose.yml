@@ -10,8 +10,8 @@ services:
         ports:
             - "8080:8080"
         env_file:
-            # - $HOME/.env
-            - ./.env
+            - $HOME/.env
+            # - ./.env
         links:
             - mongo
         depends_on:
@@ -21,8 +21,8 @@ services:
         container_name: mongo
         restart: unless-stopped
         env_file:
-            - ./.env
-        # - $HOME/.env
+            # - ./.env
+            - $HOME/.env
         hostname: mongodb-server
         ports:
             - "27017:27017"
